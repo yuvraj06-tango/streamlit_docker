@@ -1,149 +1,204 @@
-# 📊 Multi-Page Data Science Dashboard with Streamlit
+# Machine Learning Model Deployment Using Docker 🐳🤖
 
-### Data Overview Page
-<img width="1438" alt="Image" src="https://github.com/user-attachments/assets/b5481a2a-74bf-4e63-be76-8a6e6e9a6ff1" />
+In this project, we will deploy a **Machine Learning (ML) model** using **Docker**, a powerful platform for containerizing applications. Docker ensures that your ML model is portable, scalable, and independent of the underlying system. This guide will walk you through the process of containerizing an ML model, training it, and deploying it as a Dockerized application.
 
-### Data Overview Page
-<img width="1440" alt="Image" src="https://github.com/user-attachments/assets/32d9f04f-9d1f-4b0f-b7d8-815c3f93dc46" />
-
-### Model Training Page
-<img width="1440" alt="Image" src="https://github.com/user-attachments/assets/216932bc-0d9f-4cf6-b77e-4c6da19c03da" />
-
-### Data & Model Drift Page
-<img width="1440" alt="Image" src="https://github.com/user-attachments/assets/caf5df54-ae4e-4df5-8bef-112581a5dcbc" />
-
-### Explainable AI Page
-<img width="1440" alt="Image" src="https://github.com/user-attachments/assets/489ae241-fec7-4277-8bae-4378c407c13f" />
-
-A comprehensive, modular dashboard for machine learning visualization, model interpretation, and data exploration built with Streamlit. Features SHAP analysis, interactive visualizations, and multi-page navigation.
+By the end of this tutorial, you will have a fully functional ML model running inside a Docker container, ready for inference or further development. 🚀
 
 ---
 
-## 🚀 Key Features
+## Project Overview 📖
 
-### 📂 Data Management
-- Upload Excel/CSV files with automatic validation
-- Interactive data preview with sorting/filtering
-- Statistical summary with distribution visualizations
-
-### 🤖 Machine Learning
-- One-click model training (Random Forest, Decision Trees)
-- Hyperparameter tuning interface
-- Performance metrics visualization (ROC, Confusion Matrix)
-
-### 🔍 Model Interpretation
-- Interactive SHAP force plots
-- Feature importance rankings
-- Decision path visualization
-
-### 🎨 Visualization
-- Dynamic Plotly charts with hover tooltips
-- Exportable high-resolution figures
-- Theme customization (light/dark mode)
+This project demonstrates how to containerize an ML model using Docker. The model is trained on a dataset (e.g., `mushrooms.csv`) and deployed as a Streamlit web application. The application allows users to interact with the model and visualize predictions in real-time.
 
 ---
 
-## 🏗️ Project Architecture
+## Documentation 📚
+
+For more information, refer to the official documentation:
+
+- [Docker Documentation](https://docs.docker.com/)
+- [ML Model Using Docker](https://www.geeksforgeeks.org/how-to-use-docker-for-machine-learning/)
+- [Machine Learning Models](https://www.geeksforgeeks.org/machine-learning-models/)
+
+---
+
+## Prerequisites 📋
+
+Before we begin, ensure you have the following installed on your system:
+
+1. **Docker**: A platform for developing, shipping, and running applications in containers.
+2. **Python**: A programming language used to write the ML model and application.
+3. **Streamlit**: A framework for building interactive web apps with Python.
+
+---
+
+## Installation and Setup 🛠️
+
+### Step 1: Verify Docker and Python Installation
+
+#### Check Docker Version
+Run the following command in your terminal:
+```bash
+docker --version
+```
+
+You should see an output similar to:
 
 ```bash
-
-Multipage-Dashboard/
-├── main.py                 # App entry point & navigation
-├── pages/                  # Modular page components
-│   ├── 1_📊_Data_Overview.py
-│   ├── 2_🤖_Model_Training.py
-│   └── 3_🔍_SHAP_Analysis.py
-├── utils/                  # Shared utilities
-│   ├── data_loader.py
-│   └── visualization.py
-├── data/                   # Sample datasets
-├── assets/                 # Static resources
-├── tests/                  # Unit tests
-├── requirements.txt
-└── README.md
-
+Docker version 20.10.17, build 100c701
 ```
 
----
+Check Python Version
 
-## 🛠️ Installation & Setup
+Run the following command in your terminal:
 
-### Prerequisites
-
--   Python 3.8+
-
--   Pipenv (recommended) or pip
-
-### Quick Start
-
+```bash
+python --version
 ```
 
-# Clone repository
-git clone https://github.com/yourusername/multipage-dashboard.git
-cd multipage-dashboard
+You should see an output similar to:
 
-# Install dependencies
-pip install -r requirements.txt  # or pipenv install
-
-# Launch application
-streamlit run main.py
-
+```bash
+Python 3.9.7
 ```
----
 
-## Cloud Deployment
+## Project Structure 🗂️
 
-- Push to GitHub repository
-- Sign in to Streamlit Cloud
-- Click "New App" → Select repo → Set main.py as entry point
-- Deploy! (Typically completes in 1-2 minutes)
+The project consists of the following files:
 
-## 📚 Documentation
+1. app.py: The main Python script containing the ML model and Streamlit application.
+2. requirements.txt: A file listing all Python dependencies required for the project.
+3. Dockerfile: A script containing instructions for Docker to build an image.
+4. mushrooms.csv: The dataset used to train the ML model.
 
-### Usage Guide
+## Create the ML Model and Streamlit App 🐍
 
-| 📄 Page           | 🔑 Key Functions                           |
-|------------------|-------------------------------------------|
-| **📊 Data Overview** | • 📤 File upload <br> • 📊 Data profiling <br> • ❓ Missing value analysis |
-| **🤖 Model Training** | • 🧠 Algorithm selection <br> • 🎚️ Parameter tuning <br> • 📈 Model evaluation |
-| **🔍 SHAP Analysis** | • 🌍 Global interpretation <br> • 🔎 Local interpretation <br> • 📉 Dependence plots |
+Step 1: Import the ML Model
 
----
+The ML model is already available in the app.py file. This script includes the following:
 
-## 📦 Dependencies
+Data preprocessing.
+Model training.
+Streamlit interface for user interaction.
+Step 2: Create requirements.txt
 
-| 🗂️ Category      | 📦 Packages                           | ⚙️ Version       |
-|-----------------|---------------------------------------|-----------------|
-| **⚙️ Core**      | `streamlit`<br>`pandas`               | ≥1.12<br>≥1.4   |
-| **🧠 ML**        | `scikit-learn`<br>`xgboost`           | ≥1.0<br>≥1.6    |
-| **📊 Viz**       | `plotly`<br>`matplotlib`              | ≥5.8<br>≥3.5    |
-| **🔍 Interpretation** | `shap`<br>`lime`                  | ≥0.41<br>≥0.2   |
+Generate a requirements.txt file to list all Python dependencies:
 
-📝 *Complete list in [requirements.txt](requirements.txt)*
+```bash
+pip freeze > requirements.txt
+```
+## Dockerfile 📄
 
----
+The Dockerfile is a script that contains instructions for Docker to build an image. Below is the Dockerfile for this project:
 
-## ✉️ Contact
 
-**Your Name**  
-📧 [bhavyadhiman2428@gmail.com](mailto:bhavyadhiman2428@gmail.com)  
-🔗 [LinkedIn Profile](https://www.linkedin.com/in/bhavyadhiman24/)  
-🐙 [GitHub Profile](https://github.com/BhavyaDhimxn)  
+```bash
+# Use an official Python runtime as the base image
+FROM python:3.9-slim
 
----
+# Set the working directory in the container
+WORKDIR /app
 
-## 🎯 Roadmap
+# Copy the application files to the working directory
+COPY app.py /app
+COPY requirements.txt /app
+COPY mushrooms.csv /app
 
-- [ ] **AutoML Integration**  
-  Add support for automated machine learning pipelines
-- [ ] **Time-Series Models**  
-  Implement ARIMA, Prophet, and LSTM support
-- [ ] **User Authentication**  
-  Secure login system with role-based access
-- [ ] **Docker Deployment**  
-  Containerized deployment solution
-- [ ] **Enhanced Monitoring**  
-  Model performance tracking dashboard
+# Upgrade pip and install Python dependencies
+RUN python -m pip install --upgrade pip
+RUN pip install -r requirements.txt
 
-[![Star on GitHub](https://img.shields.io/github/stars/BhavyaDhimxn/repo.svg?style=social&label=Star)](https://github.com/BhavyaDhimxn/Multipage-DataScience-Dashboard)  
-⭐ *Support this project by starring the repository!*
+# Expose port 8501 for Streamlit
+EXPOSE 8501
+
+# Set the entrypoint command to run the Streamlit app
+ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+```
+
+Explanation of the Dockerfile:
+
+1. FROM python:3.9-slim: Specifies the base image (Python 3.9 slim).
+2. WORKDIR /app: Sets the working directory inside the container.
+3. COPY: Copies the application files (app.py, requirements.txt, and mushrooms.csv) to the container.
+4. RUN: Upgrades pip and installs Python dependencies from requirements.txt.
+5. EXPOSE 8501: Exposes port 8501 for the Streamlit app.
+6. ENTRYPOINT: Specifies the command to run the Streamlit app.
+
+## Deployment 🚀
+Step 1: Build the Docker Image
+
+Navigate to the directory containing the Dockerfile and run the following command:
+
+```bash
+docker build -t ml-model .
+```
+
+* The -t flag tags the image with the name ml-model.
+* The . specifies the build context (current directory).
+
+
+Step 2: Verify the Docker Image
+
+Run the following command to list all Docker images:
+
+```bash
+docker images
+```
+
+You should see an output similar to:
+
+```bash
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+ml-model     latest    abc123def456   10 seconds ago   1.02GB
+```
+
+Step 3: Run the Docker Container
+
+Start the Docker container using the following command:
+
+```bash
+docker run -p 8501:8501 ml-model
+```
+* The -p flag maps port 8501 on your local machine to port 8501 in the container.
+* The ml-model is the name of the Docker image.
+
+Once the container is running, open your web browser and navigate to:
+
+```bash
+http://localhost:8501
+```
+
+## Push the Docker Image to DockerHub 🐋
+
+Step 1: Log in to DockerHub
+
+Run the following command to log in to DockerHub:
+
+```bash
+docker login
+```
+
+Step 2: Tag the Docker Image
+
+Tag the Docker image with your DockerHub username:
+
+```bash
+docker tag ml-model yourdockerhubusername/ml-model
+```
+
+Step 3: Push the Docker Image
+
+Push the Docker image to DockerHub:
+
+```bash
+docker push yourdockerhubusername/ml-model
+```
+Here is the result for the same. 
+![alt text](/Users/tanishqmacbook/Desktop/Docker_Experiment/Docker_Experiments/3.StreamlitModel_Docker/StreamlitModel_Docker/Images/Screenshot 2025-03-24 at 3.10.34 PM.png)
+Conclusion 🎉
+
+Congratulations! 🎉 You’ve successfully deployed a Machine Learning model using Docker. This setup ensures that your ML model is portable, scalable, and independent of the underlying system. Docker and Streamlit together provide a powerful combination for building and deploying data-driven applications.
+
+Keep exploring and building more complex applications with Docker and Machine Learning! 🚀🤖
+
+Happy coding! 💻✨
